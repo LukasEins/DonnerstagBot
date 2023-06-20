@@ -37,7 +37,7 @@ client.on('interactionCreate', (interaction) => {
 
 client.on("messageCreate", (message) =>{
 if (message.author.bot){ return;}
-if (message.content.indexOf("Donnerstag" !=-1)) {
+if (message.content.includes('Donnerstag')) {
 message.channel.send("https://lukaseins.s-ul.eu/dVTE4cgZ")
 } 
 });
