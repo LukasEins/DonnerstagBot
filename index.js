@@ -75,4 +75,4 @@ if (today ==afterthursday){
 
 
 //make sure this line is the last line
-client.login('MTEwODQ2ODE2Mjg5NjMzOTAyNA.GRDqcW.xmWFOcVBeOULDefKGSu5AjmTGWT5YVVVYN_6FM'); //login bot using token
+client.login('token'); //login bot using token
