@@ -1,6 +1,7 @@
 const { createInterface } = require('node:readline');
 const { execSync } = require('child_process');
 const fetch = require('node-fetch');
+const moment = require ('moment');
 const { Client, Routes, GatewayIntentBits } = require('discord.js');
 
 
@@ -35,11 +36,43 @@ client.on('interactionCreate', (interaction) => {
   } 
 });
 
-client.on("messageCreate", (message) =>{
-if (message.author.bot){ return;}
-if (message.content.includes('Donnerstag')) {
-message.channel.send("https://lukaseins.s-ul.eu/dVTE4cgZ")
-} 
-});
+const dayINeed = 4; // for Thursday
+const today = moment().isoWeekday();
+
+if (today == dayINeed) { 
+  client.on("messageCreate", (message) =>{
+    if (message.author.bot){ return;}
+    if (message.content.toLowerCase().includes('donnerstag')) {
+    message.channel.send("https://lukaseins.s-ul.eu/dVTE4cgZ")
+    }});
+} else{
+  client.on("messageCreate", (message) =>{
+    if (message.author.bot){ return;}
+    if (message.content.toLowerCase().includes('donnerstag')) {
+    message.channel.send("Es ist noch nicht Donnerstag du Hurensohn.")
+    }});
+}
+
+const beforethursday = 3; // for wednesday
+
+if (today == beforethursday){
+  client.on("messageCreate", (message) =>{
+    if (message.author.bot){ return;}
+    if (message.content.toLowerCase().includes('mittwoch')) {
+    message.channel.send("Morgen ist es endlich so weit...")
+    }});
+}
+
+const afterthursday = 5;
+
+if (today ==afterthursday){
+  client.on("messageCreate", (message) =>{
+    if (message.author.bot){ return;}
+    if (message.content.toLowerCase().includes('freitag')) {
+    message.channel.send("Jetzt beginnt eine lange Woche des wartens, vergiss dein lächeln trotzdem nicht...")
+    }});
+}
+
+
 //make sure this line is the last line
-client.login('token'); //login bot using token
+client.login('MTEwODQ2ODE2Mjg5NjMzOTAyNA.GRDqcW.xmWFOcVBeOULDefKGSu5AjmTGWT5YVVVYN_6FM'); //login bot using token
