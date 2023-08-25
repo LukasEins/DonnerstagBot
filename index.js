@@ -36,16 +36,16 @@ client.on('interactionCreate', (interaction) => {
   } 
 });
 
-const dayINeed = 4; // for Thursday
-const today = moment().isoWeekday();
+const today = new Date().getDay(); // Get the current day (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
 
-if (today == dayINeed) { 
+
+if (today === 4) {
   client.on("messageCreate", (message) =>{
     if (message.author.bot){ return;}
     if (message.content.toLowerCase().includes('donnerstag')) {
     message.channel.send("https://lukaseins.s-ul.eu/dVTE4cgZ")
     }});
-} else{
+} else {
   client.on("messageCreate", (message) =>{
     if (message.author.bot){ return;}
     if (message.content.toLowerCase().includes('donnerstag')) {
@@ -53,9 +53,8 @@ if (today == dayINeed) {
     }});
 }
 
-const beforethursday = 3; // for wednesday
 
-if (today == beforethursday){
+if (today === 3){
   client.on("messageCreate", (message) =>{
     if (message.author.bot){ return;}
     if (message.content.toLowerCase().includes('mittwoch')) {
@@ -63,15 +62,15 @@ if (today == beforethursday){
     }});
 }
 
-const afterthursday = 5;
 
-if (today ==afterthursday){
+if (today === 5){
   client.on("messageCreate", (message) =>{
     if (message.author.bot){ return;}
     if (message.content.toLowerCase().includes('freitag')) {
     message.channel.send("Jetzt beginnt eine lange Woche des wartens, vergiss dein lächeln trotzdem nicht...")
     }});
 }
+
 
 
 //make sure this line is the last line
