@@ -1,7 +1,6 @@
 const { createInterface } = require('node:readline');
 const { execSync } = require('child_process');
 const fetch = require('node-fetch');
-const moment = require ('moment');
 const { Client, Routes, GatewayIntentBits } = require('discord.js');
 
 
@@ -26,17 +25,11 @@ const ping = {
   description: 'Pings the bot and shows the latency'
 };
 
+const berlinTime = new Date().toLocaleString("en-US", { timeZone: "Europe/Berlin" });
+
+const today = new Date(berlinTime).getDay(); 
+
 const commands = [donnerstag, ping];
-
-client.on('interactionCreate', (interaction) => {
-  if (interaction.commandName === 'ping') {
-    interaction.reply(`Latency is ${Date.now() - interaction.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`);  
-  } else if(interaction.commandName === 'donnerstag') { // This is the example command's name!
-    interaction.reply('https://lukaseins.s-ul.eu/dVTE4cgZ');
-  } 
-});
-
-const today = new Date().getDay(); // Get the current day (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
 
 
 if (today === 4) {
@@ -45,6 +38,13 @@ if (today === 4) {
     if (message.content.toLowerCase().includes('donnerstag')) {
     message.channel.send("https://lukaseins.s-ul.eu/dVTE4cgZ")
     }});
+client.on('interactionCreate', (interaction) => {
+  if (interaction.commandName === 'ping') {
+    interaction.reply(`Latency is ${Date.now() - interaction.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`);  
+  } else if(interaction.commandName === 'donnerstag') {
+    interaction.reply('https://lukaseins.s-ul.eu/dVTE4cgZ');
+  } 
+});
 } else {
   client.on("messageCreate", (message) =>{
     if (message.author.bot){ return;}
@@ -53,6 +53,14 @@ if (today === 4) {
     }});
 }
 
+if (today === 1){
+  client.on("messageCreate", (message) =>{
+	if (message.author.bot){return;}
+	if (message.content.toLowerCase().includes('montag')) {
+		message.channel.send("und so beginnt es...")
+		message.channel.send("https://lukaseins.s-ul.eu/howKEqfv")
+	}});
+}
 
 if (today === 3){
   client.on("messageCreate", (message) =>{
@@ -62,16 +70,13 @@ if (today === 3){
     }});
 }
 
-
 if (today === 5){
   client.on("messageCreate", (message) =>{
     if (message.author.bot){ return;}
     if (message.content.toLowerCase().includes('freitag')) {
-    message.channel.send("Jetzt beginnt eine lange Woche des wartens, vergiss dein lächeln trotzdem nicht...")
+    message.channel.send("Jetzt beginnt eine lange Woche des Wartens, vergiss dein Lächeln trotzdem nicht...")
     }});
 }
-
-
 
 //make sure this line is the last line
 client.login('token'); //login bot using token
